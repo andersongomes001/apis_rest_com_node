@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
-app.set("port", 3000);
+const consign = require('consign');
 
-app.get("/", function (req, res) {
-    res.json({result:"Ola mundo"});
-});
+consign()
+    .include('./models')
+    .then('./libs/middlewares.js')
+    .then('./routes')
+    .then('./libs/boot.js')
+    .into(app);
 
-app.listen(app.get('port'), function () {
-    console.log("rodando");
-});
+
+
