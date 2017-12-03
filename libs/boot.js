@@ -1,5 +1,7 @@
 module.exports = function (app) {
-    app.listen(app.get('port'), function () {
-        console.log("rodando");
+    app.db.sequelize.sync().done(function () {
+        app.listen(app.get('port'), function () {
+            console.log("rodando");
+        });
     });
 }
